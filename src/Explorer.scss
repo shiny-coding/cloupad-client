@@ -1,0 +1,55 @@
+@import "Theme.scss";
+
+.explorer {
+	border: 1px solid $border-color;
+	margin-top: 1px;
+	height: calc(100% - 3px);
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	border-radius: 8px;
+	box-shadow: $box-shadow;
+
+	> .rest.drag-target {
+		flex-grow: 1;
+		>:first-child { height: 100%; }
+	}
+
+	.drag .children { display: none; }
+
+	.controls {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-right: 0.2rem;
+		background: white;
+		padding: 0.2rem;
+		padding-right: 0.2rem;
+
+		.logo {
+			text-align: left;
+			flex-grow: 1;
+			margin-left: 0.6rem;
+			align-self: stretch;
+			filter: drop-shadow(0px 0px 1px #eee);
+			color: #636363;
+			flex-shrink: 0;
+		}
+
+		.button {
+			padding: 0.2rem 0.3rem;
+			border-radius: 3px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0.7;
+			img {
+				width: auto;
+				height: 1.1rem;
+			}
+			&:hover {
+				background: $button-hover-color;
+			}
+		}
+	}
+}

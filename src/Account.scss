@@ -1,0 +1,26 @@
+
+.account {
+	display: flex;
+	align-items: center;
+
+	img {
+	    height: 100%;
+	    opacity: 0.7;
+	    margin-right: 0.2rem;
+	    margin-top: 0.1rem;
+	}
+
+	.email {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-left: 0.5rem;
+	}
+
+	.button {
+		color: #5491c5;
+		cursor: pointer;
+		margin-left: 0.5rem;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+}

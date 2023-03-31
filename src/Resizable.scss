@@ -1,0 +1,27 @@
+.resizable-container {
+	display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+.resize-anchor {
+    padding: 0.5rem 0rem;
+	flex-shrink: 0;
+	user-select: none;
+}
+
+.resize-anchor:hover, .resize-anchor.captured {
+	cursor: col-resize;
+	.resize-anchor-line { border-color: #2189ff; }
+}
+
+.resize-anchor-line {
+	border: 1px solid white;
+	height: 100%;
+	user-select: none;
+	border-radius: 4px;
+}
+
+.second-component-container {
+	flex-grow: 1;
+}

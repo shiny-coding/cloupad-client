@@ -1,0 +1,40 @@
+
+body {
+	padding: 0.5rem;
+	height: calc(100vh - 1rem);
+	overflow: hidden;
+}
+
+#app {
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+	height: 100%;
+}
+
+.main {
+	display: flex;
+	align-items: stretch;
+	height: 100%;
+}
+
+.editor {
+	flex-grow: 1;
+
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+	height: 100%;
+
+	> .drag-target {
+		height: calc( 100% - 2.2rem );
+		display: flex;
+	}
+
+	.tabs-and-account {
+		display: flex;
+
+		justify-content: space-between;
+	}
+}
+

@@ -1,0 +1,19 @@
+@import "Theme.scss";
+
+.editor-window-container {
+	border: 1px solid $border-color;
+	flex-grow: 1;
+	overflow: hidden;
+	padding: 0.2rem;
+	display: flex;
+	overflow: auto;
+	border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+	box-shadow: $box-shadow;
+}
+
+.editor-window {
+	outline: none;
+	flex-grow: 1;
+	height: min-content;
+}

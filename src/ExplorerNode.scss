@@ -1,0 +1,47 @@
+@import "Theme.scss";
+
+.explorer-node {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	padding-right: 0.5rem;
+	background-color: white;
+	user-select: none;
+
+	&.selected {
+		background-color: $button-hover-color;
+
+		.name { cursor: text; }
+		.name[contenteditable="true"] {
+			background: white;
+		}
+	}
+
+	&:not(.folder) {
+		padding-left: 0.8rem;
+		.name { margin-left: 0.8rem; }
+	}
+	&.folder {
+		.expanded-toggler:before { content: "▸"; }
+		.drag & { .expanded-toggler:before { content: "▸"; } }
+		&.expanded .expanded-toggler:before { content: "▾"; }
+	}
+
+	.drag & {
+		background-color: #7cffb1;
+		min-width: 10rem;
+	}
+	.name {
+		padding: 0.2rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		min-height: 1.35rem;
+
+		&[contenteditable="true"] { flex-grow: 1; }
+		&:not([contenteditable="true"]) { user-select: none; }
+	}
+
+	.children {
+		.drag & { display: none; }
+	}
+}

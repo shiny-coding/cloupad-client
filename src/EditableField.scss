@@ -1,0 +1,6 @@
+@import "Theme.scss";
+
+.editable-field:focus {
+	outline: 1px solid $border-color;
+	outline-offset: -1px;
+}
