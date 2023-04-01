@@ -1,75 +1,49 @@
 import { Auth0Provider } from '@auth0/auth0-react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import ApplicationState, { ApplicationStateContext } from './ApplicationState';
+import ApplicationState from './ApplicationState';
 import ApplicationStateProvider from './ApplicationStateProvider';
-import { FileDocument } from './EditorDocument';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { nextUid } from './Types';
 import environmentConfig from "./EnvironmentConfig";
+
+import introductionString from './files/introduction';
+import bunny from './files/bunny';
+import hint from './files/hint';
+
 
 const reactRoot = ReactDOM.createRoot(
 	document.getElementById( 'app' ) as HTMLElement
 );
 
 export var applicationState : ApplicationState;
-// let documents = [ {
-// 	name: 'folder',
-// 	isFolder: true,
-// 	expanded: true,
-// 	uid: nextUid(),
-// 	children: [
-// 		{
-// 			name: 'filenameB.txt',
-// 			content: 'BBBB',
-// 			uid: nextUid()
-// 		}, {
-// 			name: 'filenameC.txt',
-// 			content: 'CCCC',
-// 			uid: nextUid()
-// 		}, {
-// 			name: 'filenameD.txt',
-// 			content: 'DDDD',
-// 			uid: nextUid()
-// 		}
-// 	]
-// }, {
-// 	name: 'filenameA.txt',
-// 	content: 'AAAA',
-// 	uid: nextUid()
-// }, {
-// 	name: 'filenameE.txt',
-// 	content: 'EEEE',
-// 	uid: nextUid()
-// } ];
-
-// applicationState = {
-// 	documents, //:[ documents[ 1 ]],
-// 	openedDocuments: [ documents[ 1 ], documents[ 0 ].children?.[ 0 ], documents[ 2 ] ] as FileDocument[],
-// 	//openedDocuments: [ documents[ 1 ] ] as FileDocument[],
-// 	activeDocument: documents[ 1 ] as FileDocument,
-// 	previewDocument: null,
-// 	exploredDocument: documents[ 1 ],
-// 	draggingObject: null,
-// 	documentWithNameEditing: null,
-// 	documentWithTabNameEditing: null
-// };
-
-// applicationState = {
-// 	documents: [ documents[ 1 ] ],
-// 	openedDocuments: [],
-// 	activeDocument: null,
-// 	previewDocument: null,
-// 	exploredDocument: null,
-// 	draggingObject: null
-// };
-
+let documents = [ {
+	name: 'sample folder',
+	isFolder: true,
+	expanded: true,
+	uid: nextUid(),
+	children: [
+		{
+			name: 'bunny',
+			content: bunny,
+			uid: nextUid()
+		}, {
+			name: 'some other note',
+			content: hint,
+			uid: nextUid()
+		}
+	]
+}, {
+	name: 'introduction',
+	content: introductionString,
+	uid: nextUid()
+} ];
 
 applicationState = {
-	documents : [],
-	openedDocuments: [],
-	activeDocument: null,
+	documents,
+	openedDocuments: [ documents[ 1 ] as any, (documents[ 0 ] as any).children[ 1 ] as any ],
+	activeDocument: documents[ 1 ] as any,
 	previewDocument: null,
 	exploredDocument: null,
 	draggingObject: null,
