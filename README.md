@@ -1,6 +1,6 @@
 # cloupad-client
 
-This is client for online notes editor Cloupad
+This is a client for online notes editor Cloupad
 It's written in typescript React
 It uses Auth0 authentication library and Neo4J graph database
 
