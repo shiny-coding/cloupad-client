@@ -57,12 +57,16 @@ function EditorWindow({ onDocumentEdit } : Props) {
 		activeDocument.savedScrollLinePos = linesPos;
 	}
 
+	function onContainerClick() {
+		$contentEditable.current?.focus();
+	}
+
 	// an optimization to re-render only a ruler, this will trigger state change of a ruler
 	let setRulerLinesCount : (linesCount : number) => void;
 	function setSetRulerLinesCount( setLinesCount : (linesCount : number) => void ) { setRulerLinesCount = setLinesCount; }
 
 	return (
-		<div ref={$editorWindowContainer} className="editor-window-container" onScroll={handleScroll}>
+		<div ref={$editorWindowContainer} className="editor-window-container" onScroll={handleScroll} onClick={onContainerClick}>
 			<Ruler initialLinesCount={activeDocument.linesCount ?? 1} setSetLinesCount={setSetRulerLinesCount} />
 			<div ref={$contentEditable}
 				className="editor-window"
