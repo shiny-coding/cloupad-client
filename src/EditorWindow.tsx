@@ -33,6 +33,17 @@ function EditorWindow({ onDocumentEdit } : Props) {
 		activeDocument.savedSelection = saveSelection( ($contentEditable.current as HTMLElement) );
 	}
 
+	function handleKeyDown( e : React.KeyboardEvent ) {
+		if ( e.key == 'Tab' ) {
+			document.execCommand( 'insertText', false, '    ' );
+			e.preventDefault();
+		}
+	}
+
+	function handleKeyUp( e : React.KeyboardEvent ) {
+		handleCursorChange( e );
+	}
+
 	useEffect(() => {
 		let _$contentEditable = $contentEditable.current as HTMLElement;
 		if ( activeDocument.savedSelection && !cursorCapturedByEditableField ) {
@@ -73,7 +84,8 @@ function EditorWindow({ onDocumentEdit } : Props) {
 				contentEditable="true"
 				suppressContentEditableWarning={true}
 				onInput={handleChange}
-				onKeyUp={handleCursorChange}
+				onKeyUp={handleKeyUp}
+				onKeyDown={handleKeyDown}
 				onFocus={handleCursorChange}
 				onClick={handleCursorChange}
 				onTouchStart={handleCursorChange}
