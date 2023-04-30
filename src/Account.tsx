@@ -145,13 +145,21 @@ function Account( {}: Props ) {
 			authInfo = { isAuthenticated, user, token };
 
 			const responseData = await response.json();
+			if ( response.status == 500 ) {
+				console.error( responseData );
+				if ( responseData.error ) {
+					setApiResponse( responseData.err.code );
+				}
+				return;
+			}
+			setApiResponse( '' );
 			initializeApplicationState( responseData );
 		}
 		requestApi();
 	}, [ isAuthenticated ] );
 
 	return <div className="account">
-			{apiResponse}
+			<div className="api-response">{apiResponse}</div>
 			<ServerOperationsStatus />
 			{isAuthenticated && user && <div className="email">{user.name}</div>}
 			{isAuthenticated && <div className="button"

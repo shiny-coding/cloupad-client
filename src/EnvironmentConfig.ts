@@ -6,4 +6,8 @@ for ( let key in process.env ) {
 	}
 }
 
+if ( environmentConfig.apiOrigin && !environmentConfig.apiOrigin.startsWith( 'http' ) ) {
+	environmentConfig.apiOrigin = window.location.origin + environmentConfig.apiOrigin;
+}
+
 export default environmentConfig;
