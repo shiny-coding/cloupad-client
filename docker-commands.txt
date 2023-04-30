@@ -1,0 +1,20 @@
+docker run --add-host host.docker.internal:host-gateway -v /cloupad/cloupad-client/.env:/cloupad/cloupad-client/.env -p 3000:3000 -it --rm --entrypoint npm serhiichechin/cloupad-client:v1.0.0 run start
+
+docker run --add-host host.docker.internal:host-gateway -v /cloupad/cloupad-client/.env:/cloupad/cloupad-client/.env -p 3000:3000 -it --rm --entrypoint bash serhiichechin/cloupad-client:v1.0.0
+
+
+
+docker run --add-host host.docker.internal:host-gateway -v /cloupad/cloupad-client/.env:/cloupad/cloupad-client/.env -p 3000:3000 -it --rm serhiichechin/cloupad-client:v1.0.0
+
+
+
+
+
+docker run --add-host host.docker.internal:host-gateway -v /cloupad/cloupad-client/.env:/cloupad/cloupad-client/.env -p 3000:3000 -it --rm serhiichechin/cloupad-client:v1.0.0
+
+
+
+
+
+
+docker run -v C:/Dev/cloupad/client/.env:/cloupad/cloupad-client/.env -p 3000:3000 -it --rm serhiichechin/cloupad-client:v1.0.0
