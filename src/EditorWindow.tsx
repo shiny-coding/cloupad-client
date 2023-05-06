@@ -44,6 +44,45 @@ function EditorWindow({ onDocumentEdit } : Props) {
 		handleCursorChange( e );
 	}
 
+	useEffect( () => {
+
+		const pasteHandler = ( event : any ) => {
+			let data;
+			if ( event.clipboardData.types.includes( 'text/html' ) ) {
+				data = event.clipboardData.getData( 'text/html' )
+			} else {
+				data = event.clipboardData.getData( 'text/plain' );
+			}
+			event.preventDefault();
+			var template = document.createElement( 'template' );
+			template.innerHTML = data;
+
+			function visit( node: any ) {
+				if ( node.childNodes )
+				for ( let i=0; i<node.childNodes.length; ++i ) {
+					let child = node.childNodes[ i ];
+					visit( child );
+				}
+				let allowedStyles = [ 'color', 'font-weight', 'text-decoration' ];
+				if ( node.style ) {
+					let stylesToDelete = [];
+					for ( let style of node.style ) {
+						if ( !allowedStyles.includes( style ) ) stylesToDelete.push( style );
+					}
+					for ( let style of stylesToDelete ) node.style[ style ] = '';
+				}
+				console.log( node );
+			}
+			visit( template.content );
+			document.execCommand( "insertHTML", false, template.innerHTML );
+		};
+
+		window.addEventListener( 'paste', pasteHandler );
+
+		return () => { window.removeEventListener( 'paste', pasteHandler ); };
+	}, []);
+
+
 	useEffect(() => {
 		let _$contentEditable = $contentEditable.current as HTMLElement;
 		if ( activeDocument.savedSelection && !cursorCapturedByEditableField ) {
@@ -91,6 +130,7 @@ function EditorWindow({ onDocumentEdit } : Props) {
 				onTouchStart={handleCursorChange}
 				onPaste={handleChange}
 				onCut={handleChange}
+				spellCheck={false}
 				dangerouslySetInnerHTML={{__html: activeDocument.content ?? ''}}></div>
 		</div>
 	);

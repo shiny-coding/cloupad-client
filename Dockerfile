@@ -6,6 +6,7 @@ ADD https://api.github.com/repos/shiny-coding/cloupad-client/git/refs/heads/main
 RUN git clone https://github.com/shiny-coding/cloupad-client
 
 WORKDIR /cloupad/cloupad-client
+COPY .env /cloupad/cloupad-client/
 
 RUN npm i
 RUN npm run build
