@@ -57,7 +57,6 @@ export function scheduleServerOperation( operation: any, rootDocuments: EditorDo
 	}
 	operation.time = new Date().getTime();
 	serverOperationsQueue.push( operation );
-	console.log( serverOperationsQueue.length );
 
 	changeServerOperationsStatus( 'upload' );
 	scheduleProcessServerOperation( debounceTime );
