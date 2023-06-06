@@ -51,7 +51,7 @@ function EditorWindow({ onDocumentEdit } : Props) {
 			if ( event.clipboardData.types.includes( 'text/html' ) ) {
 				data = event.clipboardData.getData( 'text/html' )
 			} else {
-				data = event.clipboardData.getData( 'text/plain' );
+				return;
 			}
 			event.preventDefault();
 			var template = document.createElement( 'template' );
@@ -71,10 +71,24 @@ function EditorWindow({ onDocumentEdit } : Props) {
 					}
 					for ( let style of stylesToDelete ) node.style[ style ] = '';
 				}
-				console.log( node );
+			}
+			let children = template.content.childNodes;
+			let commentNodeIndeces = [];
+			for ( let i=0; i<children.length; i++ ) {
+				let child = children[ i ];
+				if ( child.nodeType == 8 ) commentNodeIndeces.push( i );
 			}
 			visit( template.content );
+			if ( commentNodeIndeces.length == 2 ) {
+				for ( let i=children.length - 1; i>=0; i-- ) {
+					if ( i >= commentNodeIndeces[ 1 ] || i <= commentNodeIndeces[ 0 ] ) {
+						template.content.removeChild( children[ i ] );
+					}
+				}
+			}
+			console.log( 'pasting: ' + template.innerHTML );
 			document.execCommand( "insertHTML", false, template.innerHTML );
+			window.getSelection()?.collapseToStart();
 		};
 
 		window.addEventListener( 'paste', pasteHandler );
