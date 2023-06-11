@@ -28,6 +28,7 @@ $tab-background: white;
 
 	.title {
 		padding: 0.2rem;
+		white-space: nowrap;
 
 		&[contenteditable="true"] { min-width: 2rem; }
 		&:not([contenteditable="true"]) { user-select: none; }
